@@ -7,10 +7,11 @@ const userRoutes = require("./Routes/userRoutes");
 
 dotenv.config();
 app.use(morgan("common"));
-app.use("/", userRoutes);
+app.use("/api/user", userRoutes);
 
 mongoose.connect(process.env.DATABASE_URI, () => {
   console.log("Dataqbase Connect");
 });
-app.listen(4000);
+const PORT = process.env.PORT || 4000;
+app.listen(PORT);
 console.log("Server Run");

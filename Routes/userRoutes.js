@@ -1,7 +1,7 @@
-const { createUser } = require("../controlar/userCon");
+const { getAlluser } = require("../controlar/userCon");
 
 const userRoutes = require("express").Router();
 
-userRoutes.get("/", createUser);
+userRoutes.get("/", getAlluser);
 
 module.exports = userRoutes;
