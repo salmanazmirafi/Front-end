@@ -7,6 +7,7 @@ const userRoutes = require("./Routes/userRoutes");
 
 dotenv.config();
 app.use(morgan("common"));
+app.use(express.json());
 app.use("/api/user", userRoutes);
 
 mongoose.connect(process.env.DATABASE_URI, () => {

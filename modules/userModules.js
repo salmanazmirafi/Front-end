@@ -17,7 +17,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       trim: true,
       required: true,
+      min: 6,
     },
+    blogs: [{ type: mongoose.Types.ObjectId, ref: "Blog", required: true }],
   },
   {
     timestamps: true,
