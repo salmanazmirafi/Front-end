@@ -1,5 +1,13 @@
+import { AppBar, Toolbar, Typography } from "@mui/material";
+
 function Header() {
-  return <h1>Hello</h1>;
+  return (
+    <AppBar>
+      <Toolbar>
+        <Typography>Hi</Typography>
+      </Toolbar>
+    </AppBar>
+  );
 }
 
 export default Header;
