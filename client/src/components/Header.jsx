@@ -8,10 +8,12 @@ import {
   Tab,
 } from "@mui/material";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { authActions } from "../store";
 
 function Header() {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
   const [value, setValue] = useState();
@@ -63,6 +65,7 @@ function Header() {
           )}
           {isLoggedIn && (
             <Button
+              onClick={() => dispatch(authActions.logout())}
               LinkComponent={Link}
               to="/auth"
               variant="contained"
