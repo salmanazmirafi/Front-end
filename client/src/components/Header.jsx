@@ -36,6 +36,7 @@ function Header() {
             >
               <Tab LinkComponent={Link} to="/blogs" label="All Blogs" />
               <Tab LinkComponent={Link} to="/my-blog" label="My Blogs" />
+              <Tab LinkComponent={Link} to="/blog/add" label="Add Blogs" />
             </Tabs>
           </Box>
         )}

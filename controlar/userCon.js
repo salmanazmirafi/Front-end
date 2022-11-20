@@ -59,6 +59,7 @@ exports.login = async (req, res) => {
 
     res.status(200).json({
       message: "Login Successful",
+      user: existingMail,
     });
   } catch (error) {
     res.status(500).status({

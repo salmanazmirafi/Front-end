@@ -23,6 +23,8 @@ function Blogs() {
       {blog &&
         blog.map((blog, index) => (
           <Blog
+            id={blog._id}
+            isUser={localStorage.getItem("user") === blog.user._id}
             title={blog.title}
             description={blog.description}
             imageURL={blog.image}

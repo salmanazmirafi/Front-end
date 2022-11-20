@@ -8,8 +8,31 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import "../App.css";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function Blog({ title, description, imageURL, userName }) {
+function Blog({ title, description, imageURL, userName, isUser, id }) {
+  const naveigat = useNavigate();
+  const handleEdit = () => {
+    naveigat(`/my-blog/${id}`);
+  };
+  const serverReq = async () => {
+    const res = await axios
+      .delete(`http://localhost:4000/api/blog/${id}`)
+      .catch((err) => console.error(err));
+    const data = await res.data;
+    return data;
+  };
+  const handleDelete = () => {
+    serverReq()
+      .then(() => naveigat("/"))
+      .then(() => naveigat("/blogs"));
+  };
+
+  console.log(title, isUser);
   return (
     <div>
       {" "}
@@ -25,22 +48,27 @@ function Blog({ title, description, imageURL, userName }) {
           },
         }}
       >
-        <Box display="flex">
-          <IconButton sx={{ marginLeft: "auto" }}></IconButton>
-          <IconButton>{/* <DeleteForeverIcon color="error" /> */}</IconButton>
-        </Box>
-
+        {isUser && (
+          <Box display="flex">
+            <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
+              <EditIcon color="warning" />
+            </IconButton>
+            <IconButton onClick={handleDelete}>
+              <DeleteIcon color="error" />
+            </IconButton>
+          </Box>
+        )}
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-              {userName}
+              {userName ? userName.charAt(0) : ""}
             </Avatar>
           }
           title={title}
         />
         <CardMedia
+          className="Img"
           component="img"
-          height="194"
           image={imageURL}
           alt="Paella dish"
         />
@@ -48,6 +76,10 @@ function Blog({ title, description, imageURL, userName }) {
         <CardContent>
           <hr />
           <br />
+          <Typography>
+            <b>{userName}</b>
+            <br />
+          </Typography>
           <Typography variant="body2" color="text.secondary">
             {description}
           </Typography>

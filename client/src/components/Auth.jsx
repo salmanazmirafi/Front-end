@@ -37,10 +37,12 @@ function Auth() {
     console.log(input);
     if (isLogin) {
       handaleRequst("signup")
+        .then((data) => localStorage.setItem("user", data.user._id))
         .then(() => dispath(authActions.login()))
         .then(() => naviagte("/blogs"));
     } else {
       handaleRequst()
+        .then((data) => localStorage.setItem("user", data.user._id))
         .then(() => dispath(authActions.login()))
         .then(() => naviagte("/blogs"));
     }
